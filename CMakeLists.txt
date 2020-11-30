@@ -56,3 +56,5 @@ target_include_directories(button_process
   )
 
 install(TARGETS button_process DESTINATION bin)
+
+file(COPY config/kill_process.sh DESTINATION bin)
