@@ -8,7 +8,7 @@
 
 #define _1ms    1000
 
-static Button_t button7 = {
+static Button_t button = {
         .gpio.pin = 7,
         .gpio.eMode = eModeInput,
         .ePullMode = ePullModePullUp,
@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     int fd;
     int state = 0;
     
-    if(Button_init(&button7))
+    if(Button_init(&button))
         return EXIT_FAILURE;
     
 
@@ -33,9 +33,9 @@ int main(int argc, char const *argv[])
     {
         while(1)
         {
-            if(!Button_read(&button7)){
+            if(!Button_read(&button)){
                 usleep(_1ms * 40);
-                while(!Button_read(&button7));
+                while(!Button_read(&button));
                 usleep(_1ms * 40);
                 state ^= 0x01;
                 break;
