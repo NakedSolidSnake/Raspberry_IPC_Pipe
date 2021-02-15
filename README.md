@@ -193,16 +193,30 @@ close(fd);
 
 Para o código fonte completo clique [aqui](src)
 
-## Compilação e Execução
+## Compilando ,Executando e Matando os processos
 Para compilar e testar o projeto é necessário instalar a biblioteca de [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) necessária para resolver as dependências de configuração de GPIO da Raspberry Pi.
 
-$ git clone 
-$ cd 
+### Compilando
+Para compilar o execute os comandos abaixo
+```bash
+$ git clone https://github.com/NakedSolidSnake/Raspberry_IPC_Pipe
+$ cd Raspberry_IPC_Pipe
 $ mkdir build && cd build
 $ cmake ..
 $ make
+```
+### Executando
+Para executar a aplicação execute o processo _*launch_processes*_ para lançar os processos *button_process* e *led_process*
+```bash
 $ cd bin
 $ ./launch_processes
+```
+### Matando os processos
+Para matar os processos criados execute o script kill_processes
+```bash
+$ cd bin
+$ ./kill_processes
+```
 
 ## Conclusão
 _Pipe_ é um IPC muito utilizado no shell, porém como opção de uso de comunicação entre processos que possuem tempo de vida indeterminado não muito viável, por não permitir o fluxo de dados de forma bidirecional, e pela dificuldade de manter os handlers de leitura e escrita.
