@@ -193,7 +193,7 @@ close(fd);
 
 Para o código fonte completo clique [aqui](src)
 
-## Compilando ,Executando e Matando os processos
+## Compilando, Executando e Matando os processos
 Para compilar e testar o projeto é necessário instalar a biblioteca de [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) necessária para resolver as dependências de configuração de GPIO da Raspberry Pi.
 
 ### Compilando
