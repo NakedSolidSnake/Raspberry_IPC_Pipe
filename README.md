@@ -212,10 +212,10 @@ $ cd bin
 $ ./launch_processes
 ```
 ### Matando os processos
-Para matar os processos criados execute o script kill_processes
+Para matar os processos criados execute o script kill_process.sh
 ```bash
 $ cd bin
-$ ./kill_processes
+$ ./kill_process.sh
 ```
 
 ## Conclusão
