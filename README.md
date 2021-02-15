@@ -1,13 +1,22 @@
-![Pipe](https://lh3.googleusercontent.com/proxy/v-P4qlHBYIKCoT_yxV_JIDQQg7nspLP46PZ9L812bxvz-vdZVJTMHMbAWKTyjT1rvmF4ruikIMNzfv00DnXPr9wzHm7mfGGNjqUMbKFFoMlfMSO4N5FkrN8)
 <p align="center">
   <img src="https://64.media.tumblr.com/tumblr_mbpqrwH1NK1qb8i73o1_500.gif"/>
 </p>
 
 
-# Pipe
-# Introdução
-# Implementação
-## launch_processes.c
+# _Pipe_
+## Introdução
+_Pipe_ é um recurso empregado para conectar a saída de um processo a entrada de um outro processo. _Pipe_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos do respectivo diretório e filtrando por arquivos com extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
+```bash
+$ ls | grep *.txt
+```
+O comando descrito transfere os dados de saída gerado pelo comando _ls_ que seriam apresentados no _stdout_  e são passados como argumentos de entrada(_stdin_) para o comando _grep_ que filtra o resultado e apresenta os arquivos que possuem a extensão. Em outras palavras o _Pipe_ permite que o _stdout_ do processo A se conecte com o _stdin_ do processo B.
+
+<p align="center">
+  <img src="docs/images/pipe.png"/>
+</p>
+
+## Implementação
+### launch_processes.c
 ```c
 #include <unistd.h>
 #include <stdlib.h>
@@ -60,7 +69,7 @@ int main(int argc, char const *argv[])
 }
 
 ```
-## button_process.c
+### button_process.c
 ```c
 #include <unistd.h>
 #include <stdlib.h>
@@ -120,7 +129,7 @@ int main(int argc, char const *argv[])
 }
 
 ```
-## led_process.c
+### led_process.c
 ```c
 #include <unistd.h>
 #include <stdlib.h>
@@ -168,4 +177,4 @@ int main(int argc, char const *argv[])
 
 ```
 
-# Conclusão
+## Conclusão
