@@ -5,17 +5,45 @@
 
 # _Pipe_
 ## Introdução
-_Pipe_ é um recurso empregado para conectar a saída de um processo a entrada de um outro processo. _Pipe_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos do respectivo diretório e filtrando por arquivos com extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
+_Pipe_ é um recurso IPC empregado para conectar a saída de um processo a entrada de um outro processo. _Pipe_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos de um respectivo diretório e filtrando por arquivos de extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
 ```bash
 $ ls | grep *.txt
 ```
-O comando descrito transfere os dados de saída gerado pelo comando _ls_ que seriam apresentados no _stdout_  e são passados como argumentos de entrada(_stdin_) para o comando _grep_ que filtra o resultado e apresenta os arquivos que possuem a extensão. Em outras palavras o _Pipe_ permite que o _stdout_ do processo A se conecte com o _stdin_ do processo B.
+O comando descrito transfere os dados de saída gerado pelo comando _ls_ que seriam apresentados no _stdout_  e são passados como argumentos de entrada(_stdin_) para o comando _grep_ que filtra o resultado e apresenta os arquivos que possuem a extensão. Em outras palavras o _Pipe_ permite que o _stdout_ do [Processo A] se conecte com o _stdin_ do [Processo B].
 
 <p align="center">
   <img src="docs/images/pipe.png"/>
 </p>
 
+O fluxo da conexão obedece a seguinte ordem o _stdout_ se conecta com o _stdin_, porém fluxo contrário não é permitido, para isso é necessário estabelecer um conexão do processo B para o A.
+
+### Criando um _Pipe_
+
+Para criar um _pipe_ é utilizado a _system all_ 
+```c
+#include <unistd.h>
+
+int pipe(int filedes[2]);
+```
+
+### _Pipe_ após um _fork_
+O _fork_ é tem a característica de clonar todo o processo, e devido a isso tudo que for aberto pelo processo pai vai ser refletido no processo filho, sendo assim, se um _pipe_ for aberto no processo pai o processo filho também irá herdar o _pipe_, a figura a seguir pode representar essa situação:
+
+<p align="center">
+  <img src="docs/images/pipe-apos_fork.png"/>
+</p>
+
+Para garantir que o processo pai se comunicará com o processo filho na forma correta, é necessário fechar os descritores, de modo que o _stdout_ do pai fique conectado ao _stdin_ do filho, a imagem a seguir representa essa configuração:
+
+<p align="center">
+  <img src="docs/images/pipe-close_descriptors.png"/>
+</p>
+
 ## Implementação
+Para exemplificar o _Pipe_ foi criado uma aplicação no estilo cliente-servidor, onde o processo que controla o botão que é responsável pela requisição para a troca de estado do _LED_ se comporta como o cliente, e o processo que controla o _LED_ que é responsável pelo o controle do pino físico, ou seja, a alteração do estado efetivo do _LED_ se comporta como o server da aplicação; A aplicação é composta por três executáveis descritos a seguir:
+* _launch_processes_ - processo responsável por lançar os processos _button_process_ e _led_process_ através da combinação _fork_ e _exec_
+* _button_process_ - processo responsável por ler o GPIO em modo de leitura da Raspberry Pi e enviar o estado via _Pipe_ para o processo _led_process_
+* _led_process_ - processo reponsável por controlar o GPIO em modo de escrita da Rasoberry e alterar o estado do pino de acordo com o _input_ fornecido pelo processo _button_process_.
 ### launch_processes.c
 ```c
 #include <unistd.h>
