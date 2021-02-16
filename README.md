@@ -7,7 +7,18 @@
 
 ## Sumário
 * [Introdução](#Introdução)
-
+* [Criando Pipes](#Criando Pipes)
+* [Pipes após um fork](#Pipes após um fork)
+* [Implementação](#Implementação)
+* [launch_processes.c](#launch_processes.c)
+* [button_process.c](#button_process.c)
+* [led_process.c](#led_process.c)
+* [Compilando, Executando e Matando os processos](#Compilando, Executando e Matando os processos)
+* [Compilando](#Compilando)
+* [Executando](#Executando)
+* [Matando os processos](#Matando os processos)
+* [Conclusão](#Conclusão)
+* [Referências](#Referências)
 
 ## Introdução
 _Pipes_ é um recurso IPC empregado para conectar a saída de um processo a entrada de um outro processo. _Pipes_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos de um respectivo diretório e filtrando por arquivos de extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
