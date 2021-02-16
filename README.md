@@ -4,6 +4,11 @@
 
 
 # _Pipes_
+
+## Sumário
+* [Introdução](#Introdução)
+
+
 ## Introdução
 _Pipes_ é um recurso IPC empregado para conectar a saída de um processo a entrada de um outro processo. _Pipes_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos de um respectivo diretório e filtrando por arquivos de extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
 ```bash
