@@ -7,16 +7,16 @@
 
 ## Sumário
 * [Introdução](#Introdução)
-* [Criando Pipes](#Criando Pipes)
-* [Pipes após um fork](#Pipes após um fork)
+* [Criando Pipes](#criando-pipes)
+* [Pipes após um fork](#pipes-após-um-fork)
 * [Implementação](#Implementação)
 * [launch_processes.c](#launch_processesc)
 * [button_process.c](#button_processc)
 * [led_process.c](#led_processc)
-* [Compilando, Executando e Matando os processos](#Compilando, Executando e Matando os processos)
+* [Compilando, Executando e Matando os processos](#compilando-executando-e-matando-os-processos)
 * [Compilando](#Compilando)
 * [Executando](#Executando)
-* [Matando os processos](#Matando os processos)
+* [Matando os processos](#matando-os-processos)
 * [Conclusão](#Conclusão)
 * [Referências](#Referências)
 
