@@ -220,7 +220,7 @@ $ ./kill_process.sh
 
 ## Conclusão
 _Pipe_ é um IPC muito utilizado no shell, porém como opção de uso de comunicação entre processos que possuem tempo de vida indeterminado não muito viável, por não permitir o fluxo de dados de forma bidirecional, e pela dificuldade de manter os handlers de leitura e escrita.
-## Referência
+## Referências
 * [Linux Programming Interface](https://www.amazon.com.br/dp/B004OEJMZM/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
 * [fork e exec](https://github.com/NakedSolidSnake/Raspberry_fork_exec)
 * [lib hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware)
