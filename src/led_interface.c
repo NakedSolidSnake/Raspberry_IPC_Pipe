@@ -2,38 +2,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <led.h>
+#include <led_interface.h>
 
 #define _1ms    1000
 
-int main(int argc, char const *argv[])
-{    
+
+
+bool LED_Run(void *object, char **argv, LED_Interface *led)
+{
     char buffer[BUFSIZ + 1];
-    int fd;   
+    int fd_temp;    
     int state_cur;
     int state_old;
-
-    LED_t led =
-    {
-        .gpio.pin = 0,
-        .gpio.eMode = eModeOutput
-    };
-
-    if (LED_init(&led))
+    
+    if (led->Init(object) == false)
         return EXIT_FAILURE;
     
-    sscanf(argv[1], "%d", &fd);
+    sscanf(argv[1], "%d", &fd_temp);
+    const int fd = fd_temp;
+
     while(1)
     {
         memset(buffer, 0, sizeof(buffer));
         read(fd, buffer, BUFSIZ);
-        sscanf(buffer, "state = %d", &state_cur);        
-
+        sscanf(buffer, "state = %d", &state_cur);
         if (state_cur != state_old)
         {
-
             state_old = state_cur;
-            LED_set(&led, (eState_t)state_cur);
+            led->Set(object, (uint8_t)state_cur);
         }
         usleep(1);
     }    
@@ -41,3 +37,4 @@ int main(int argc, char const *argv[])
     close(fd);
     return 0;
 }
+
