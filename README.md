@@ -20,6 +20,9 @@
 * [Conclusão](#Conclusão)
 * [Referências](#Referências)
 
+Antes de seguir esse artigo é imprescindível a ter instalado a biblioteca de [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware.
+
+
 ## Introdução
 _Pipes_ é um recurso IPC empregado para conectar a saída de um processo a entrada de um outro processo. _Pipes_ é largamente utilizado pelo CLI(_Command Line Interface_), como por exemplo em uma consulta simples listando todos os arquivos de um respectivo diretório e filtrando por arquivos de extensão \*.txt, normalmente usamos _ls_ seguido de _grep_, como demonstrado no comando abaixo:
 ```bash
