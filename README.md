@@ -328,5 +328,5 @@ _Pipe_ é um IPC muito utilizado no shell, porém como opção de uso de comunic
 
 ## Referências
 * [Linux Programming Interface](https://www.amazon.com.br/dp/B004OEJMZM/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
-* [fork e exec](https://github.com/NakedSolidSnake/Raspberry_fork_exec)
-* [lib hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware)
+* [fork, exec e daemon](https://github.com/NakedSolidSnake/Raspberry_fork_exec_daemon)
+* [biblioteca hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware)
