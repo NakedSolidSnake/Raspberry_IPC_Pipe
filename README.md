@@ -5,7 +5,7 @@
 
 # _Pipes_
 
-## Sumário
+## Tópicos
 * [Introdução](#Introdução)
 * [Criando Pipes](#criando-pipes)
 * [Pipes após um fork](#pipes-após-um-fork)
@@ -36,7 +36,7 @@ O comando descrito transfere os dados de saída gerado pelo comando _ls_ que ser
 
 O fluxo da conexão obedece a seguinte ordem o _stdout_ se conecta com o _stdin_, porém fluxo contrário não é permitido, para isso é necessário estabelecer um conexão do processo B para o A.
 
-### Criando _Pipes_
+## Criando _Pipes_
 
 Para criar _pipes_ é utilizado a _system call_ 
 ```c
@@ -45,7 +45,7 @@ Para criar _pipes_ é utilizado a _system call_
 int pipe(int filedes[2]);
 ```
 
-### _Pipes_ após um _fork_
+## _Pipes_ após um _fork_
 O _fork_ é tem a característica de clonar todo o processo, e devido a isso tudo que for aberto pelo processo pai vai ser refletido no processo filho, sendo assim, se um _pipe_ for aberto no processo pai o processo filho também irá herdar o _pipe_, a figura a seguir pode representar essa situação:
 
 <p align="center">
@@ -118,41 +118,6 @@ close(file_pipes[1]);
 
 ### button_interface.c
 
-
-
-```c
-    
-    if(button->Init(object) == false)
-        return EXIT_FAILURE;
-    
-
-    memset(buffer, 0, sizeof(buffer));
-    sscanf(argv[1], "%d", &fd_temp);
-    const int fd = fd_temp;
-    while(1)
-    {
-        while(1)
-        {
-            if(!button->Read(object)){
-                usleep(_1ms * 100);
-                state ^= 0x01;
-                break;
-            }else{
-                usleep( _1ms );
-            }
-        }   
-
-        memset(data, 0, sizeof(data));
-        snprintf(data, sizeof(data), "state = %d\n", state);
-        write(fd, data, strlen(data));                
-        usleep(500 * _1ms);
-    }    
-    
-    close(fd);
-        
-    return 0;
-}
-```
 Declaramos um buffer para formatar a mensagem de envio, e declaramos uma variável para receber o descritor recebido via argumento
 ```c
 char data[64];
@@ -238,10 +203,10 @@ Para o código fonte completo clique [aqui](https://github.com/NakedSolidSnake/R
 ## Compilando, Executando e Matando os processos
 Para compilar e testar o projeto é necessário instalar a biblioteca de [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) necessária para resolver as dependências de configuração de GPIO da Raspberry Pi.
 
-### Compilando
+## Compilando
 Para faciliar a execução do exemplo, o exemplo proposto foi criado baseado em uma interface, onde é possível selecionar se usará o hardware da Raspberry Pi 3, ou se a interação com o exemplo vai ser através de input feito por FIFO e o output visualizado através de LOG.
 
-#### Clonando o projeto
+### Clonando o projeto
 Pra obter uma cópia do projeto execute os comandos a seguir:
 
 ```bash
@@ -250,23 +215,23 @@ $ cd Raspberry_IPC_Pipe
 $ mkdir build && cd build
 ```
 
-#### Selecionando o modo
+### Selecionando o modo
 Para selecionar o modo devemos passar para o cmake uma variável de ambiente chamada de ARCH, e pode-se passar os seguintes valores, PC ou RASPBERRY, para o caso de PC o exemplo terá sua interface preenchida com os sources presentes na pasta src/platform/pc, que permite a interação com o exemplo através de FIFO e LOG, caso seja RASPBERRY usará os GPIO's descritos no [artigo](https://github.com/NakedSolidSnake/Raspberry_lib_hardware#testando-a-instala%C3%A7%C3%A3o-e-as-conex%C3%B5es-de-hardware).
 
-##### Modo PC
+#### Modo PC
 ```bash
 $ cmake -DARCH=PC ..
 $ make
 ```
 
-##### Modo RASPBERRY
+#### Modo RASPBERRY
 ```bash
 $ cmake -DARCH=RASPBERRY ..
 $ make
 ```
 
-### Executando
-Para executar a aplicação execute o processo _*launch_processes*_ para lançar os processos *button_process* e *led_process*m que foram determinados de acordo com o modo selecionado.
+## Executando
+Para executar a aplicação execute o processo _*launch_processes*_ para lançar os processos *button_process* e *led_process* que foram determinados de acordo com o modo selecionado.
 
 ```bash
 $ cd bin
@@ -285,10 +250,10 @@ pi        4726     1  0 23:53 pts/0    00:00:00 led_process 3
 ```
 Aqui é possível notar que o button_process possui um argumento com o valor 4, e o led_process possui também um argumento com o valor 3, esses valores representam os descritores gerados pelo _pipe system call_, onde o 4 representa o descritor de escrita e o 3 representa o descritor de leitura.
 
-### Interagindo com o exemplo
+## Interagindo com o exemplo
 Dependendo do modo de compilação selecionado a interação com o exemplo acontece de forma diferente
 
-#### MODO PC
+### MODO PC
 Para o modo PC, precisamos abrir um terminal e monitorar os LOG's
 ```bash
 $ sudo tail -f /var/log/syslog | grep LED
@@ -313,10 +278,10 @@ Apr  3 20:56:51 cssouza-Latitude-5490 LED PIPE[22810]: LED Status: On
 Apr  3 20:56:52 cssouza-Latitude-5490 LED PIPE[22810]: LED Status: Off
 ```
 
-#### MODO RASPBERRY
+### MODO RASPBERRY
 Para o modo RASPBERRY a cada vez que o botão for pressionado irá alternar o estado do LED.
 
-### Matando os processos
+## Matando os processos
 Para matar os processos criados execute o script kill_process.sh
 ```bash
 $ cd bin
