@@ -22,17 +22,22 @@ int main(int argc, char const *argv[])
     fd_read = file_pipes[0];
     fd_write = file_pipes[1];
 
-    if(ret == 0){
+    if(ret == 0)
+    {
         int fork_res = fork();
-        if(fork_res == 0){
+        if(fork_res == 0)
+        {
             close(fd_read);
             memset(args, 0, sizeof(args));
             sprintf(args, "%d", fd_write);
             (void)execl("button_process", "button_process", args, (char *)0);
             exit(EXIT_FAILURE);
-        }else if(fork_res > 0){
+        }
+        else if(fork_res > 0)
+        {
             fork_res = fork();
-            if(fork_res == 0){
+            if(fork_res == 0)
+            {
                 close(fd_write);
                 memset(args, 0, sizeof(args));
                 sprintf(args, "%d", fd_read);

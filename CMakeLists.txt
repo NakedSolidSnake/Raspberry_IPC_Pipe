@@ -7,18 +7,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_BUILD_TYPE Debug)
 
-# if(${ARCH} STREQUAL "RASPBERRY")
-#   message("-- Created ${ARCH} compilation.")  
-#   set (LIBS hardware interface)
-#   set (FOLDER "raspberry")  
-# elseif(${ARCH} STREQUAL "PC")
-#   message("-- Created ${ARCH} compilation.") 
-#   set (LIBS interface)
-#   set (FOLDER "pc")
-# else()
-#   message("-- You must specify the ARCH variable [cmake -DARCH=PC  ..] or [cmake -DARCH=RASPBERRY  ..]") 
-# endif()
-
 if(DEFINED ARCH)
   if(${ARCH} STREQUAL "RASPBERRY")
     message("-- Created ${ARCH} compilation.")  
@@ -38,13 +26,6 @@ else()
   message("")
   message(FATAL_ERROR "")
 endif()
-
-
-
-# else()
-#   message("-- Created ${ARCH} compilation.") 
-# endif()
-
 
 #build lib interface
 add_library(interface "")

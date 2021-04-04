@@ -13,7 +13,8 @@ static bool Read(void *object);
 int main(int argc, char *argv[])
 {
 
-    Button_t button = {
+    Button_t button = 
+    {
         .gpio.pin = 7,
         .gpio.eMode = eModeInput,
         .ePullMode = ePullModePullUp,
