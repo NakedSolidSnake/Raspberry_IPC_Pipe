@@ -6,19 +6,24 @@
 # _Pipes_
 
 ## Tópicos
-* [Introdução](#Introdução)
+* [Introdução](#introdução)
 * [Criando Pipes](#criando-pipes)
 * [Pipes após um fork](#pipes-após-um-fork)
-* [Implementação](#Implementação)
+* [Implementação](#implementação)
 * [launch_processes.c](#launch_processesc)
-* [button_process.c](#button_processc)
-* [led_process.c](#led_processc)
+* [button_interface.c](#button_interfacec)
+* [led_interface.c](#led_interfacec)
 * [Compilando, Executando e Matando os processos](#compilando-executando-e-matando-os-processos)
-* [Compilando](#Compilando)
-* [Executando](#Executando)
+* [Compilando](#compilando)
+* [Clonando o projeto](#clonando-o-projeto)
+* [Selecionando o modo](#selecionando-o-modo)
+* [Executando](#executando)
+* [Interagindo com o exemplo](#interagindo-com-o-exemplo)
+* [MODO PC](#modo-pc-1)
+* [MODO RASPBERRY](#modo-raspberry-1)
 * [Matando os processos](#matando-os-processos)
-* [Conclusão](#Conclusão)
-* [Referências](#Referências)
+* [Conclusão](#conclusão)
+* [Referências](#referências)
 
 Antes de seguir esse artigo é imprescindível a instalação da biblioteca [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware.
 
@@ -292,6 +297,6 @@ $ ./kill_process.sh
 _Pipe_ é um IPC muito utilizado no shell, porém como opção de uso de comunicação entre processos que possuem tempo de vida indeterminado não muito viável, por não permitir o fluxo de dados de forma bidirecional, e pela dificuldade de manter os descritores de leitura e escrita.
 
 ## Referências
-* [Linux Programming Interface](https://www.amazon.com.br/dp/B004OEJMZM/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
+* [Mark Mitchell, Jeffrey Oldham, and Alex Samuel - Advanced Linux Programming](https://www.amazon.com.br/Advanced-Linux-Programming-CodeSourcery-LLC/dp/0735710430)
 * [fork, exec e daemon](https://github.com/NakedSolidSnake/Raspberry_fork_exec_daemon)
 * [biblioteca hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware)
