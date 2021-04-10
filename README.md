@@ -130,7 +130,7 @@ char buffer[BUFSIZ + 1];
 int fd;
 int state = 0;
 ```
-Configuramos o butão, passando o descritor como argumento
+Configuramos o botão, passando o descritor como argumento
 ```c    
 if(button->Init(object) == false)
         return EXIT_FAILURE;
