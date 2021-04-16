@@ -25,7 +25,7 @@
 * [Conclusão](#conclusão)
 * [Referências](#referências)
 
-Antes de seguir esse artigo é imprescindível a instalação da biblioteca [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware.
+Antes de seguir esse artigo é imprescindível a instalação da biblioteca [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware da Raspberry.
 
 
 ## Introdução
