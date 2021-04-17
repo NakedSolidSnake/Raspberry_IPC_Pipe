@@ -25,7 +25,7 @@
 * [Conclusão](#conclusão)
 * [Referências](#referências)
 
-Antes de seguir esse artigo é imprescindível a instalação da biblioteca [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware.
+Antes de seguir esse artigo é imprescindível a instalação da biblioteca [hardware](https://github.com/NakedSolidSnake/Raspberry_lib_hardware) caso queria utilizar o hardware da Raspberry.
 
 
 ## Introdução
@@ -130,7 +130,7 @@ char buffer[BUFSIZ + 1];
 int fd;
 int state = 0;
 ```
-Configuramos o butão, passando o descritor como argumento
+Configuramos o botão, passando o descritor como argumento
 ```c    
 if(button->Init(object) == false)
         return EXIT_FAILURE;
