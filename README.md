@@ -142,19 +142,8 @@ sscanf(argv[1], "%d", &fd);
 ```
 O loop a seguir aguarda que o botão seja pressionado para que a variável *state* seja alterada, se estiver em 0 vai para 1 e vice-versa
 ```c 
-
-while(1)
-{
-    if(!button->Read(object)){
-        usleep(_1ms * 100);
-        state ^= 0x01;
-        break;
-    }else{
-        usleep( _1ms );
-    }
-}
-
-        
+wait_press(object, button);
+state ^= 0x01;
 ```
 Assim que o botão for pressionado, inicia-se a escrita no _pipe_ como o novo estado, em seguida é chamado a _system call write_ para enviar a mensagem através do _pipe_
 ```c

@@ -8,6 +8,22 @@
 
 #define _1ms    1000
 
+static void wait_press(void *object, Button_Interface *button)
+{
+    while (true)
+    {
+        if (!button->Read(object))
+        {
+            usleep(_1ms * 100);
+            break;
+        }
+        else
+        {
+            usleep(_1ms);
+        }
+    }
+}
+
 bool Button_Run(void *object, char **argv, Button_Interface *button)
 {
     char data[64];
@@ -22,19 +38,11 @@ bool Button_Run(void *object, char **argv, Button_Interface *button)
     memset(buffer, 0, sizeof(buffer));
     sscanf(argv[1], "%d", &fd_temp);
     const int fd = fd_temp;
-    while(1)
+    while(true)
     {
-        while(1)
-        {
-            if(!button->Read(object)){
-                usleep(_1ms * 100);
-                state ^= 0x01;
-                break;
-            }else{
-                usleep( _1ms );
-            }
-        }   
+        wait_press(object, button);  
 
+        state ^= 0x01;
         memset(data, 0, sizeof(data));
         snprintf(data, sizeof(data), "state = %d\n", state);
         write(fd, data, strlen(data));                
