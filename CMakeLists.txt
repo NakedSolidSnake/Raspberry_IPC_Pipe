@@ -27,6 +27,13 @@ else()
   message(FATAL_ERROR "")
 endif()
 
+option(DOCKER_MODE "Enable Docker mode" OFF)
+
+if(DOCKER_MODE)
+  message(STATUS "Enable Docker mode")
+  add_definitions(-DDOCKER)
+endif()
+
 #build lib interface
 add_library(interface "")
 

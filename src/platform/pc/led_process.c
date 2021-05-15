@@ -33,9 +33,14 @@ bool Init(void *object)
 
 bool Set(void *object, uint8_t state)
 {
-    (void)object;    
+    (void)object;   
+     
+#ifdef DOCKER
+    fprintf(stdout, "LED Status: %s", state ? "On": "Off");
+#else
     openlog("LED PIPE", LOG_PID | LOG_CONS , LOG_USER);
     syslog(LOG_INFO, "LED Status: %s", state ? "On": "Off");
     closelog(); 
+#endif
     return true;
 }
