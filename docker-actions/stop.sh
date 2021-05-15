@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo docker stop pipes 
-sudo docker rm pipes 
+sudo docker stop pipe
+sudo docker rm pipe
 sudo docker ps -a

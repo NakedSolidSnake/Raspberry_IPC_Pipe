@@ -8,4 +8,4 @@ if [ "$IP" = "" ]; then
     exit 1
 fi
 
-sudo docker run -itd --log-driver syslog --log-opt syslog-address=tcp://$IP:514 --name pipes pipe
+sudo docker run -itd --log-driver syslog --log-opt syslog-address=tcp://$IP:514 --name pipe pipes
